@@ -1,39 +1,37 @@
 import { Button } from "@/components/ui/button";
-import { Shield, Zap, Heart, Trophy, ChevronRight, Star, MessageSquare, BarChart3 } from "lucide-react";
+import { Heart, Shield, Sparkles, TrendingUp, ChevronRight, Star, MessageCircle, BarChart3 } from "lucide-react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import { FadeIn } from "@/components/FadeIn";
 import { GlassCard } from "@/components/GlassCard";
-import heroBg from "@/assets/hero-bg.jpg";
 
 const steps = [
-  { icon: Shield, title: "Detect", desc: "Extension detects hate/toxicity in real time across your socials" },
-  { icon: BarChart3, title: "Track", desc: "Web app tracks your vibe score and emotional patterns" },
-  { icon: Zap, title: "Level Up", desc: "Stay positive, earn XP, and climb the leaderboard" },
+  { icon: Shield, title: "Pause & Reflect", desc: "Our extension gently pauses you before posting something that may hurt someone", color: "lilac" as const },
+  { icon: Sparkles, title: "Understand Why", desc: "Clear, friendly explanations help you see the impact of your words", color: "sky" as const },
+  { icon: TrendingUp, title: "Grow Together", desc: "Track your growth, earn badges, and build a kinder online presence", color: "mint" as const },
 ];
 
 const features = [
-  { icon: Shield, title: "Toxicity Detector", desc: "AI-powered real-time hate speech detection", glow: "cyan" as const },
-  { icon: Heart, title: "Mood Insights", desc: "Spotify Wrapped-style weekly mental health reports", glow: "pink" as const },
-  { icon: MessageSquare, title: "Safe Community", desc: "Moderated feed with positivity filters", glow: "purple" as const },
-  { icon: Trophy, title: "Points + Ranking", desc: "Gamified leaderboard and achievement system", glow: "cyan" as const },
+  { icon: Shield, title: "Gentle Interventions", desc: "Thoughtful nudges, not harsh blocks. You always have the choice.", color: "lilac" as const },
+  { icon: MessageCircle, title: "Bestie AI Chat", desc: "A supportive AI friend to talk through tough moments with you.", color: "peach" as const },
+  { icon: Heart, title: "Safe Community", desc: "Anonymous sharing, gentle reactions, and content safety built in.", color: "mint" as const },
+  { icon: BarChart3, title: "Growth Tracking", desc: "See how you're improving with clear, encouraging progress visuals.", color: "sky" as const },
 ];
 
 const testimonials = [
-  { name: "Maya", handle: "@mayavibes", text: "VibeGuard literally changed my online experience. My anxiety dropped so much 😌", avatar: "🧑‍🎤" },
-  { name: "Jay", handle: "@jaykeeps", text: "The vibe journey is addicting fr. I'm level 18 now and a Peacekeeper 🕊️", avatar: "🧑‍💻" },
-  { name: "Sam", handle: "@samchill", text: "The rewrite feature is genius. Helped me think before posting something toxic 💀", avatar: "🎨" },
+  { name: "Maya", text: "VibeGuard helped me pause and rethink so many times. My online interactions feel so much healthier now.", avatar: "M" },
+  { name: "Jay", text: "The Bestie chat is amazing. It feels like talking to a friend who actually gets it.", avatar: "J" },
+  { name: "Sam", text: "I love the growth tracking. Seeing my progress makes me want to keep being kind.", avatar: "S" },
 ];
 
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Navbar */}
-      <nav className="fixed top-0 w-full z-50 glass border-b border-border/30">
+      <nav className="fixed top-0 w-full z-50 bg-card/80 backdrop-blur-xl border-b border-border/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-              <Shield className="w-4 h-4 text-primary-foreground" />
+            <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+              <Heart className="w-4 h-4 text-primary-foreground" />
             </div>
             <span className="text-lg font-display font-bold">VibeGuard</span>
           </div>
@@ -49,28 +47,29 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
-        <div className="absolute inset-0 opacity-30">
-          <img src={heroBg} alt="" className="w-full h-full object-cover" />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/80 to-background" />
+      <section className="relative pt-32 pb-24 overflow-hidden">
+        {/* Soft gradient bg */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5" />
+        <div className="absolute top-20 right-20 w-96 h-96 rounded-full bg-primary/10 blur-3xl" />
+        <div className="absolute bottom-20 left-20 w-80 h-80 rounded-full bg-secondary/10 blur-3xl" />
+        
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 text-center">
           <FadeIn>
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-xs font-medium text-primary mb-6">
-              <Zap className="w-3 h-3" /> Now protecting 50K+ users
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-xs font-medium text-primary mb-6 border border-primary/20">
+              <Sparkles className="w-3 h-3" /> A kinder internet starts with you
             </div>
           </FadeIn>
           <FadeIn delay={0.1}>
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-bold leading-[1.1] mb-6">
-              Protect your vibe.
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-bold leading-[1.1] mb-6 text-foreground">
+              Your space to grow,
               <br />
-              <span className="text-gradient-primary">Block the hate.</span>
+              <span className="text-gradient-primary">not get judged.</span>
             </h1>
           </FadeIn>
           <FadeIn delay={0.2}>
             <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-              AI-powered toxicity detection meets gamified well-being. Stay safe online, 
-              level up your kindness, and join a community that actually cares.
+              VibeGuard helps you pause, reflect, and choose kinder words — 
+              with gentle AI support that feels like a trusted friend, not moderation software.
             </p>
           </FadeIn>
           <FadeIn delay={0.3}>
@@ -79,7 +78,7 @@ export default function LandingPage() {
                 <Button variant="hero" size="xl">Get Started <ChevronRight className="w-5 h-5" /></Button>
               </Link>
               <Link to="/extension">
-                <Button variant="neon" size="xl">Download Extension</Button>
+                <Button variant="outline" size="xl">Learn About the Extension</Button>
               </Link>
             </div>
           </FadeIn>
@@ -87,20 +86,20 @@ export default function LandingPage() {
       </section>
 
       {/* How it works */}
-      <section className="py-20 px-4 sm:px-6">
+      <section className="py-24 px-4 sm:px-6">
         <div className="max-w-5xl mx-auto">
           <FadeIn>
             <h2 className="text-3xl sm:text-4xl font-display font-bold text-center mb-4">How It Works</h2>
-            <p className="text-muted-foreground text-center mb-14 max-w-lg mx-auto">Three steps to a safer internet experience</p>
+            <p className="text-muted-foreground text-center mb-16 max-w-lg mx-auto">Three gentle steps toward a healthier online experience</p>
           </FadeIn>
           <div className="grid md:grid-cols-3 gap-6">
             {steps.map((step, i) => (
               <FadeIn key={step.title} delay={i * 0.1}>
-                <GlassCard className="text-center group hover:glow-cyan transition-shadow duration-300">
-                  <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
+                <GlassCard color={step.color} className="text-center h-full">
+                  <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
                     <step.icon className="w-7 h-7 text-primary" />
                   </div>
-                  <div className="text-xs font-bold text-primary mb-2">STEP {i + 1}</div>
+                  <div className="text-xs font-bold text-primary mb-2 uppercase tracking-wider">Step {i + 1}</div>
                   <h3 className="text-xl font-display font-semibold mb-2">{step.title}</h3>
                   <p className="text-sm text-muted-foreground">{step.desc}</p>
                 </GlassCard>
@@ -111,17 +110,17 @@ export default function LandingPage() {
       </section>
 
       {/* Features */}
-      <section className="py-20 px-4 sm:px-6">
+      <section className="py-24 px-4 sm:px-6 bg-gradient-to-b from-transparent via-primary/3 to-transparent">
         <div className="max-w-6xl mx-auto">
           <FadeIn>
-            <h2 className="text-3xl sm:text-4xl font-display font-bold text-center mb-14">
-              Features that <span className="text-gradient-primary">hit different</span>
+            <h2 className="text-3xl sm:text-4xl font-display font-bold text-center mb-16">
+              Designed with <span className="text-gradient-primary">empathy</span>
             </h2>
           </FadeIn>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {features.map((f, i) => (
               <FadeIn key={f.title} delay={i * 0.08}>
-                <GlassCard glow={f.glow} className="hover:scale-[1.02] transition-transform duration-300 h-full">
+                <GlassCard color={f.color} className="hover:scale-[1.02] transition-transform duration-300 h-full">
                   <f.icon className="w-8 h-8 text-primary mb-4" />
                   <h3 className="text-lg font-display font-semibold mb-2">{f.title}</h3>
                   <p className="text-sm text-muted-foreground">{f.desc}</p>
@@ -133,11 +132,11 @@ export default function LandingPage() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 px-4 sm:px-6">
+      <section className="py-24 px-4 sm:px-6">
         <div className="max-w-5xl mx-auto">
           <FadeIn>
-            <h2 className="text-3xl sm:text-4xl font-display font-bold text-center mb-14">
-              What the community says
+            <h2 className="text-3xl sm:text-4xl font-display font-bold text-center mb-16">
+              What our community says
             </h2>
           </FadeIn>
           <div className="grid md:grid-cols-3 gap-5">
@@ -145,16 +144,15 @@ export default function LandingPage() {
               <FadeIn key={t.name} delay={i * 0.1}>
                 <GlassCard className="h-full">
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="text-2xl">{t.avatar}</div>
-                    <div>
-                      <p className="font-semibold text-sm">{t.name}</p>
-                      <p className="text-xs text-muted-foreground">{t.handle}</p>
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-sm font-bold text-primary-foreground">
+                      {t.avatar}
                     </div>
+                    <span className="font-semibold text-sm">{t.name}</span>
                   </div>
                   <p className="text-sm text-muted-foreground leading-relaxed">"{t.text}"</p>
                   <div className="flex gap-0.5 mt-3">
                     {[...Array(5)].map((_, j) => (
-                      <Star key={j} className="w-3.5 h-3.5 fill-primary text-primary" />
+                      <Star key={j} className="w-3.5 h-3.5 fill-warning text-warning" />
                     ))}
                   </div>
                 </GlassCard>
@@ -165,11 +163,11 @@ export default function LandingPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 px-4 sm:px-6">
+      <section className="py-24 px-4 sm:px-6">
         <FadeIn>
-          <div className="max-w-3xl mx-auto text-center glass rounded-2xl p-10 sm:p-14 glow-cyan">
-            <h2 className="text-3xl sm:text-4xl font-display font-bold mb-4">Ready to protect your vibe?</h2>
-            <p className="text-muted-foreground mb-8">Join thousands building a safer internet. It's free to start.</p>
+          <div className="max-w-3xl mx-auto text-center pastel-card p-10 sm:p-14 bg-gradient-to-br from-primary/5 to-secondary/5">
+            <h2 className="text-3xl sm:text-4xl font-display font-bold mb-4">Ready to build a kinder internet?</h2>
+            <p className="text-muted-foreground mb-8">Join a community that encourages reflection and growth. It's free to start.</p>
             <Link to="/signup">
               <Button variant="hero" size="xl">Join VibeGuard <ChevronRight className="w-5 h-5" /></Button>
             </Link>
@@ -181,7 +179,7 @@ export default function LandingPage() {
       <footer className="border-t border-border py-10 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <Shield className="w-5 h-5 text-primary" />
+            <Heart className="w-5 h-5 text-primary" />
             <span className="font-display font-bold">VibeGuard</span>
           </div>
           <div className="flex gap-6 text-sm text-muted-foreground">

@@ -2,24 +2,24 @@ import { useState } from "react";
 import { FadeIn } from "@/components/FadeIn";
 import { GlassCard } from "@/components/GlassCard";
 import { Button } from "@/components/ui/button";
-import { Heart, MessageSquare, Flag, Send, AlertTriangle, Sparkles } from "lucide-react";
+import { Heart, MessageSquare, Flag, Send, AlertTriangle, Sparkles, Smile, ThumbsUp } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type FilterType = "trending" | "new" | "positive" | "mental-health" | "advice";
 
 const filters: { key: FilterType; label: string }[] = [
-  { key: "trending", label: "🔥 Trending" },
-  { key: "new", label: "✨ New" },
-  { key: "positive", label: "💚 Positive Only" },
-  { key: "mental-health", label: "🧠 Mental Health" },
-  { key: "advice", label: "💡 Advice" },
+  { key: "trending", label: "Trending" },
+  { key: "new", label: "New" },
+  { key: "positive", label: "Positive Only" },
+  { key: "mental-health", label: "Mental Health" },
+  { key: "advice", label: "Advice" },
 ];
 
 const posts = [
-  { id: 1, user: "Maya", avatar: "🧑‍🎤", badge: "Peacekeeper 🕊️", time: "2h ago", text: "Remember: your worth isn't measured by likes. You're amazing just being you 💛", likes: 42, comments: 8, filter: "positive" },
-  { id: 2, user: "Jay", avatar: "🧑‍💻", badge: "Kind Soul 🌱", time: "4h ago", text: "Just completed my 30-day streak! The journey map is so addicting fr 🔥", likes: 89, comments: 12, filter: "trending" },
-  { id: 3, user: "Sam", avatar: "🎨", badge: "Community Helper 🤝", time: "6h ago", text: "If anyone's going through a tough time, my DMs are open. You're not alone 🫂", likes: 156, comments: 34, filter: "mental-health" },
-  { id: 4, user: "Alex", avatar: "🎯", badge: "Newbie Protector 🌱", time: "8h ago", text: "Tip: when you feel like posting something mean, close the app and take 3 deep breaths 😌", likes: 67, comments: 15, filter: "advice" },
+  { id: 1, user: "Anonymous", badge: "Calm Communicator", time: "2h ago", text: "I used to react so quickly online. Taking a pause before posting has really changed how I interact. Anyone else finding this helpful?", likes: 42, comments: 8 },
+  { id: 2, user: "Anonymous", badge: "Empathy Builder", time: "4h ago", text: "Just completed my 30-day growth streak. It feels good to see real progress in how I communicate online.", likes: 89, comments: 12 },
+  { id: 3, user: "Sam", badge: "Positive Voice", time: "6h ago", text: "If anyone's going through a tough time, you're not alone. Sometimes just knowing someone cares makes a difference.", likes: 156, comments: 34 },
+  { id: 4, user: "Alex", badge: "Calm Communicator", time: "8h ago", text: "Tip: when you feel like lashing out online, close the app and take 3 deep breaths. It really works.", likes: 67, comments: 15 },
 ];
 
 export default function Community() {
@@ -47,24 +47,24 @@ export default function Community() {
   };
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8 max-w-3xl mx-auto space-y-6">
+    <div className="p-6 lg:p-10 max-w-3xl mx-auto space-y-6">
       <FadeIn>
-        <h1 className="text-2xl sm:text-3xl font-display font-bold">Community Feed</h1>
-        <p className="text-muted-foreground text-sm mt-1">A safe space for real ones 💯</p>
+        <h1 className="text-3xl font-display font-bold">Community</h1>
+        <p className="text-muted-foreground text-sm mt-1">A safe space for sharing, growing, and supporting each other</p>
       </FadeIn>
 
       {/* Filters */}
       <FadeIn delay={0.05}>
-        <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
+        <div className="flex gap-2 overflow-x-auto pb-1">
           {filters.map((f) => (
             <button
               key={f.key}
               onClick={() => setActiveFilter(f.key)}
               className={cn(
-                "px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all",
+                "px-4 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all border",
                 activeFilter === f.key
-                  ? "bg-primary/10 text-primary border border-primary/30"
-                  : "glass text-muted-foreground hover:text-foreground"
+                  ? "bg-primary/10 text-primary border-primary/20"
+                  : "bg-card text-muted-foreground border-border hover:text-foreground hover:border-border"
               )}
             >
               {f.label}
@@ -79,19 +79,19 @@ export default function Community() {
           <textarea
             value={newPost}
             onChange={(e) => { setNewPost(e.target.value); setShowWarning(false); }}
-            placeholder="Share something positive... ✨"
+            placeholder="Share something supportive..."
             className="w-full bg-transparent text-sm resize-none outline-none min-h-[60px] placeholder:text-muted-foreground"
           />
           {showWarning && (
-            <div className="flex items-start gap-3 p-3 rounded-lg bg-warning/10 border border-warning/30 mb-3">
-              <AlertTriangle className="w-5 h-5 text-warning shrink-0 mt-0.5" />
+            <div className="flex items-start gap-3 p-4 rounded-xl bg-accent/10 border border-accent/20 mb-3">
+              <AlertTriangle className="w-5 h-5 text-accent shrink-0 mt-0.5" />
               <div>
-                <p className="text-sm font-medium text-warning">Your post may be harmful 💀</p>
-                <p className="text-xs text-muted-foreground mt-1">Wanna rewrite it? Here's a suggestion:</p>
+                <p className="text-sm font-medium text-accent">Quick pause</p>
+                <p className="text-xs text-muted-foreground mt-1">This message might hurt someone. Want to rethink it?</p>
                 <p className="text-xs text-foreground mt-1 italic">"I feel frustrated right now but I'm working on expressing myself better."</p>
-                <div className="flex gap-2 mt-2">
+                <div className="flex gap-2 mt-3">
                   <Button size="sm" variant="default" onClick={() => { setNewPost("I feel frustrated right now but I'm working on expressing myself better."); setShowWarning(false); }}>
-                    <Sparkles className="w-3 h-3" /> Use Suggestion
+                    <Sparkles className="w-3 h-3" /> Rewrite it kindly
                   </Button>
                   <Button size="sm" variant="ghost" onClick={() => setShowWarning(false)}>Edit Myself</Button>
                 </div>
@@ -112,11 +112,13 @@ export default function Community() {
           <FadeIn key={post.id} delay={0.15 + i * 0.05}>
             <GlassCard>
               <div className="flex items-center gap-3 mb-3">
-                <div className="text-2xl">{post.avatar}</div>
+                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+                  <Smile className="w-4 h-4 text-primary" />
+                </div>
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
                     <span className="font-semibold text-sm">{post.user}</span>
-                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-primary/10 text-primary">{post.badge}</span>
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/10">{post.badge}</span>
                   </div>
                   <p className="text-xs text-muted-foreground">{post.time}</p>
                 </div>
@@ -127,10 +129,10 @@ export default function Community() {
                   onClick={() => toggleLike(post.id)}
                   className={cn(
                     "flex items-center gap-1.5 text-xs transition-colors",
-                    likedPosts.has(post.id) ? "text-accent" : "text-muted-foreground hover:text-accent"
+                    likedPosts.has(post.id) ? "text-primary" : "text-muted-foreground hover:text-primary"
                   )}
                 >
-                  <Heart className={cn("w-4 h-4", likedPosts.has(post.id) && "fill-accent")} />
+                  <ThumbsUp className={cn("w-4 h-4", likedPosts.has(post.id) && "fill-primary")} />
                   {post.likes + (likedPosts.has(post.id) ? 1 : 0)}
                 </button>
                 <button className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors">
