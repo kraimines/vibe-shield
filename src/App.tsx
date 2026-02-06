@@ -14,6 +14,8 @@ import Missions from "./pages/Missions";
 import Extension from "./pages/Extension";
 import SettingsPage from "./pages/Settings";
 import Profile from "./pages/Profile";
+import Bestie from "./pages/Bestie";
+import Analytics from "./pages/Analytics";
 import AppLayout from "./components/AppLayout";
 import NotFound from "./pages/NotFound";
 
@@ -31,11 +33,13 @@ const App = () => (
           <Route path="/signup" element={<Signup />} />
           <Route element={<AppLayout />}>
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/bestie" element={<Bestie />} />
             <Route path="/community" element={<Community />} />
             <Route path="/leaderboard" element={<Leaderboard />} />
             <Route path="/journey" element={<Journey />} />
             <Route path="/missions" element={<Missions />} />
             <Route path="/extension" element={<Extension />} />
+            <Route path="/analytics" element={<Analytics />} />
             <Route path="/settings" element={<SettingsPage />} />
             <Route path="/profile" element={<Profile />} />
           </Route>

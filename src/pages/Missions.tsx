@@ -1,28 +1,28 @@
 import { FadeIn } from "@/components/FadeIn";
 import { GlassCard } from "@/components/GlassCard";
-import { Target, CheckCircle, Clock, Zap, Star, Gift, Flame } from "lucide-react";
+import { Target, CheckCircle, Clock, Sparkles, Star, Heart } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const dailyMissions = [
-  { id: 1, text: "Post something supportive", xp: 50, done: true },
-  { id: 2, text: "Rewrite 1 toxic sentence", xp: 75, done: true },
-  { id: 3, text: "Avoid hate content for 24h", xp: 100, done: false },
+  { id: 1, text: "Share something supportive", xp: 50, done: true },
+  { id: 2, text: "Rewrite a message with kinder words", xp: 75, done: true },
+  { id: 3, text: "Take a mindful pause before posting", xp: 100, done: false },
 ];
 
 const weeklyMissions = [
-  { id: 4, text: "Stay above 80% kindness score for 7 days", xp: 300, progress: 5, total: 7, done: false },
-  { id: 5, text: "Get 20 likes on positive comments", xp: 200, progress: 14, total: 20, done: false },
-  { id: 6, text: "Join a mental health discussion", xp: 150, progress: 1, total: 1, done: true },
+  { id: 4, text: "Maintain a positive tone for 7 days", xp: 300, progress: 5, total: 7, done: false },
+  { id: 5, text: "Receive 20 community reactions", xp: 200, progress: 14, total: 20, done: false },
+  { id: 6, text: "Join a supportive conversation", xp: 150, progress: 1, total: 1, done: true },
 ];
 
 const streaks = [
-  { days: 3, reward: "Small XP Boost", unlocked: true },
-  { days: 7, reward: "Mystery Box 📦", unlocked: true },
-  { days: 14, reward: "Rare Frame", unlocked: false },
-  { days: 30, reward: "Legendary Badge 👑", unlocked: false },
+  { days: 3, reward: "Encouragement Badge", unlocked: true },
+  { days: 7, reward: "Kindness Badge", unlocked: true },
+  { days: 14, reward: "Empathy Badge", unlocked: false },
+  { days: 30, reward: "Peace Champion", unlocked: false },
 ];
 
 export default function Missions() {
@@ -30,18 +30,18 @@ export default function Missions() {
   const [boxOpened, setBoxOpened] = useState(false);
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8 max-w-4xl mx-auto space-y-8">
+    <div className="p-6 lg:p-10 max-w-4xl mx-auto space-y-8">
       <FadeIn>
         <div className="flex items-center gap-3">
           <Target className="w-7 h-7 text-primary" />
           <div>
-            <h1 className="text-2xl sm:text-3xl font-display font-bold">Missions</h1>
-            <p className="text-muted-foreground text-sm">Complete missions. Earn XP. Open mystery boxes. 🎮</p>
+            <h1 className="text-3xl font-display font-bold">Missions</h1>
+            <p className="text-muted-foreground text-sm">Small steps toward a kinder you</p>
           </div>
         </div>
       </FadeIn>
 
-      {/* Daily Missions */}
+      {/* Daily */}
       <FadeIn delay={0.05}>
         <h2 className="text-lg font-display font-semibold flex items-center gap-2 mb-3">
           <Clock className="w-5 h-5 text-primary" /> Daily Missions
@@ -49,10 +49,10 @@ export default function Missions() {
         <div className="space-y-2">
           {dailyMissions.map((m) => (
             <GlassCard key={m.id} className={cn("flex items-center gap-3 py-3", m.done && "opacity-60")}>
-              <CheckCircle className={cn("w-5 h-5 shrink-0", m.done ? "text-success" : "text-muted-foreground")} />
+              <CheckCircle className={cn("w-5 h-5 shrink-0", m.done ? "text-mint" : "text-muted-foreground")} />
               <span className={cn("flex-1 text-sm", m.done && "line-through")}>{m.text}</span>
               <div className="flex items-center gap-1">
-                <Zap className="w-3.5 h-3.5 text-primary" />
+                <Sparkles className="w-3.5 h-3.5 text-primary" />
                 <span className="text-xs font-bold text-primary">+{m.xp} XP</span>
               </div>
             </GlassCard>
@@ -60,26 +60,26 @@ export default function Missions() {
         </div>
       </FadeIn>
 
-      {/* Weekly Missions */}
+      {/* Weekly */}
       <FadeIn delay={0.1}>
         <h2 className="text-lg font-display font-semibold flex items-center gap-2 mb-3">
-          <Star className="w-5 h-5 text-neon-purple" /> Weekly Missions
+          <Star className="w-5 h-5 text-secondary" /> Weekly Missions
         </h2>
         <div className="space-y-2">
           {weeklyMissions.map((m) => (
             <GlassCard key={m.id} className={cn("py-3", m.done && "opacity-60")}>
               <div className="flex items-center gap-3">
-                <CheckCircle className={cn("w-5 h-5 shrink-0", m.done ? "text-success" : "text-muted-foreground")} />
+                <CheckCircle className={cn("w-5 h-5 shrink-0", m.done ? "text-mint" : "text-muted-foreground")} />
                 <span className={cn("flex-1 text-sm", m.done && "line-through")}>{m.text}</span>
                 <div className="flex items-center gap-1">
-                  <Zap className="w-3.5 h-3.5 text-neon-purple" />
-                  <span className="text-xs font-bold text-neon-purple">+{m.xp} XP</span>
+                  <Sparkles className="w-3.5 h-3.5 text-secondary" />
+                  <span className="text-xs font-bold text-secondary">+{m.xp} XP</span>
                 </div>
               </div>
               {!m.done && m.progress !== undefined && (
                 <div className="mt-2 ml-8">
                   <div className="w-full bg-muted rounded-full h-1.5">
-                    <div className="bg-gradient-to-r from-neon-purple to-primary h-1.5 rounded-full" style={{ width: `${(m.progress / m.total!) * 100}%` }} />
+                    <div className="bg-gradient-to-r from-primary to-secondary h-1.5 rounded-full" style={{ width: `${(m.progress / m.total!) * 100}%` }} />
                   </div>
                   <p className="text-[10px] text-muted-foreground mt-1">{m.progress}/{m.total}</p>
                 </div>
@@ -89,35 +89,35 @@ export default function Missions() {
         </div>
       </FadeIn>
 
-      {/* Streak Tracker */}
+      {/* Streaks */}
       <FadeIn delay={0.15}>
         <h2 className="text-lg font-display font-semibold flex items-center gap-2 mb-3">
-          <Flame className="w-5 h-5 text-accent" /> Streak Rewards
+          <Heart className="w-5 h-5 text-accent" /> Streak Milestones
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {streaks.map((s) => (
             <GlassCard key={s.days} className={cn("text-center", !s.unlocked && "opacity-40")}>
-              <p className="text-2xl font-display font-bold">{s.days}</p>
+              <p className="text-2xl font-display font-bold text-primary">{s.days}</p>
               <p className="text-[10px] text-muted-foreground">day streak</p>
               <p className="text-xs font-medium mt-2">{s.reward}</p>
-              {s.unlocked && <span className="text-[10px] text-success">✓ Unlocked</span>}
+              {s.unlocked && <span className="text-[10px] text-mint">Earned</span>}
             </GlassCard>
           ))}
         </div>
       </FadeIn>
 
-      {/* Mystery Box */}
+      {/* Milestone Reward */}
       <FadeIn delay={0.2}>
-        <GlassCard glow="pink" className="text-center">
-          <h2 className="text-lg font-display font-semibold mb-2">Mystery Box 📦</h2>
-          <p className="text-sm text-muted-foreground mb-4">Complete 5 missions to unlock a mystery box!</p>
+        <GlassCard color="lilac" className="text-center">
+          <h2 className="text-lg font-display font-semibold mb-2">Next Milestone</h2>
+          <p className="text-sm text-muted-foreground mb-4">Complete 5 missions to unlock your next badge</p>
           <div className="flex items-center justify-center gap-2 mb-4">
             <span className="text-xs text-muted-foreground">3/5 missions</span>
             <div className="w-32 bg-muted rounded-full h-2">
-              <div className="bg-gradient-to-r from-accent to-neon-purple h-2 rounded-full" style={{ width: "60%" }} />
+              <div className="bg-gradient-to-r from-primary to-secondary h-2 rounded-full" style={{ width: "60%" }} />
             </div>
           </div>
-          <Button variant="accent" disabled>Open Box 🎁</Button>
+          <Button variant="soft" disabled>Almost there</Button>
         </GlassCard>
       </FadeIn>
 
@@ -132,22 +132,23 @@ export default function Missions() {
             onClick={() => { setShowBox(false); setBoxOpened(false); }}
           >
             <motion.div
-              initial={{ scale: 0.5, rotateY: 0 }}
-              animate={boxOpened ? { scale: 1, rotateY: 360 } : { scale: 1 }}
-              className="glass rounded-2xl p-8 max-w-sm w-full text-center glow-pink"
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              className="pastel-card p-8 max-w-sm w-full text-center soft-shadow-lg"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="text-6xl mb-4">{boxOpened ? "🎉" : "📦"}</div>
               {boxOpened ? (
                 <>
-                  <h3 className="text-xl font-display font-bold mb-2">You got a Rare Item! 🔥</h3>
-                  <p className="text-neon-purple font-semibold">+500 XP Boost</p>
-                  <p className="text-xs text-muted-foreground mt-1">That's a clean drop fr 💯</p>
+                  <Star className="w-12 h-12 text-primary mx-auto mb-4" />
+                  <h3 className="text-xl font-display font-bold mb-2">You earned a new badge!</h3>
+                  <p className="text-primary font-semibold">Empathy Builder</p>
+                  <p className="text-xs text-muted-foreground mt-1">Keep going, you're making a real difference</p>
                 </>
               ) : (
                 <>
-                  <h3 className="text-xl font-display font-bold mb-4">Open Your Mystery Box</h3>
-                  <Button variant="hero" onClick={() => setBoxOpened(true)}>Open! 🎁</Button>
+                  <Gift className="w-12 h-12 text-primary mx-auto mb-4" />
+                  <h3 className="text-xl font-display font-bold mb-4">Reward Ready</h3>
+                  <Button variant="hero" onClick={() => setBoxOpened(true)}>Claim</Button>
                 </>
               )}
             </motion.div>
@@ -157,3 +158,6 @@ export default function Missions() {
     </div>
   );
 }
+
+// Import needed for the box popup
+import { Gift } from "lucide-react";

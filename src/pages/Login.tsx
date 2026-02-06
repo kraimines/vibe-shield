@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { GlassCard } from "@/components/GlassCard";
 import { FadeIn } from "@/components/FadeIn";
-import { Shield, ArrowRight } from "lucide-react";
+import { Heart, ArrowRight } from "lucide-react";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -16,16 +16,16 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
+    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
       <FadeIn>
-        <GlassCard glow="cyan" className="w-full max-w-sm">
+        <GlassCard color="lilac" className="w-full max-w-sm">
           <div className="flex items-center gap-2 justify-center mb-6">
-            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-              <Shield className="w-5 h-5 text-primary-foreground" />
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+              <Heart className="w-5 h-5 text-primary-foreground" />
             </div>
             <span className="text-xl font-display font-bold">VibeGuard</span>
           </div>
-          <h1 className="text-xl font-display font-bold text-center mb-6">Welcome back 👋</h1>
+          <h1 className="text-xl font-display font-bold text-center mb-6">Welcome back</h1>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="text-xs font-medium text-muted-foreground block mb-1.5">Email</label>
@@ -33,7 +33,7 @@ export default function Login() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-muted rounded-lg px-3 py-2.5 text-sm outline-none border border-border focus:border-primary transition-colors"
+                className="w-full bg-background rounded-xl px-3 py-2.5 text-sm outline-none border border-border focus:border-primary transition-colors"
                 placeholder="you@email.com"
               />
             </div>
@@ -43,7 +43,7 @@ export default function Login() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full bg-muted rounded-lg px-3 py-2.5 text-sm outline-none border border-border focus:border-primary transition-colors"
+                className="w-full bg-background rounded-xl px-3 py-2.5 text-sm outline-none border border-border focus:border-primary transition-colors"
                 placeholder="••••••••"
               />
             </div>
