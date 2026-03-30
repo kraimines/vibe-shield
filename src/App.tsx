@@ -1,52 +1,46 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Landing from "./pages/Landing";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
-import Dashboard from "./pages/Dashboard";
-import Community from "./pages/Community";
-import Leaderboard from "./pages/Leaderboard";
-import Journey from "./pages/Journey";
-import Missions from "./pages/Missions";
-import Extension from "./pages/Extension";
-import SettingsPage from "./pages/Settings";
-import Profile from "./pages/Profile";
-import Bestie from "./pages/Bestie";
-import Analytics from "./pages/Analytics";
-import AppLayout from "./components/AppLayout";
-import NotFound from "./pages/NotFound";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { RoleProvider } from "@/hooks/useRole";
+import Layout from "@/components/layout/Layout";
+import Login from "@/pages/Login";
+import ChatPage from "@/pages/ChatPage";
+import EmployeeDashboard from "@/pages/EmployeeDashboard";
+import ManagerDashboard from "@/pages/ManagerDashboard";
+import DirectionDashboard from "@/pages/DirectionDashboard";
+import SimulatorPage from "@/pages/SimulatorPage";
+import SettingsPage from "@/pages/SettingsPage";
+import NotFound from "@/pages/NotFound";
+import { useRole } from "@/hooks/useRole";
 
 const queryClient = new QueryClient();
 
+function DashboardRouter() {
+  const { user } = useRole();
+  if (!user) return <Navigate to="/login" replace />;
+  if (user.role === 'direction') return <DirectionDashboard />;
+  if (user.role === 'manager') return <ManagerDashboard />;
+  return <EmployeeDashboard />;
+}
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
+    <RoleProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route element={<AppLayout />}>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/bestie" element={<Bestie />} />
-            <Route path="/community" element={<Community />} />
-            <Route path="/leaderboard" element={<Leaderboard />} />
-            <Route path="/journey" element={<Journey />} />
-            <Route path="/missions" element={<Missions />} />
-            <Route path="/extension" element={<Extension />} />
-            <Route path="/analytics" element={<Analytics />} />
+          <Route path="/" element={<Navigate to="/login" replace />} />
+          <Route element={<Layout />}>
+            <Route path="/dashboard" element={<DashboardRouter />} />
+            <Route path="/chat" element={<ChatPage />} />
+            <Route path="/team" element={<ManagerDashboard />} />
+            <Route path="/direction" element={<DirectionDashboard />} />
+            <Route path="/simulator" element={<SimulatorPage />} />
             <Route path="/settings" element={<SettingsPage />} />
-            <Route path="/profile" element={<Profile />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
-    </TooltipProvider>
+    </RoleProvider>
   </QueryClientProvider>
 );
 
